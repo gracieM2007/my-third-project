@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced To-Do List</title>
+    <link rel="stylesheet" href="style3.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar Menu -->
+      <aside class="sidebar">
+        <h2>Menu</h2>
+        <input type="search" class="search-box" placeholder="Search" />
+        <div class="menu-section">
+          <h3>Tasks</h3>
+          <ul>
+            <li onclick="window.location.href='today.html'">
+              ☀️Today <span class="count" id="todayCount">0</span>
+            </li>
+            <li class="active" onclick="window.location.href='upcoming.html'">
+              📅Upcoming <span class="count" id="upcomingCount">0</span>
+            </li>
+
+            <li onclick="window.location.href='calender.html'">🗓️Calendar</li>
+            <li onclick="window.location.href='sticky_wall.html'">
+              📝Sticky Wall
+            </li>
+          </ul>
+        </div>
+        <div class="menu-section">
+          <h3>Lists</h3>
+          <ul>
+            <li onclick="window.location.href='personal.html'">
+              <span class="dot pink"></span> Personal
+              <span class="count" id="personalCount">0</span>
+            </li>
+            <li onclick="window.location.href='work.html'">
+              <span class="dot blue"></span> Work
+              <span class="count" id="workCount">0</span>
+            </li>
+            <li onclick="window.location.href='List1.html'">
+              <span class="dot yellow"></span> List 1
+              <span class="count" id="list1Count">0</span>
+            </li>
+            <li class="add">+ Add New List</li>
+          </ul>
+        </div>
+        <div class="menu-section">
+          <h3>Tags</h3>
+          <div class="tags">
+            <span class="tag tag-blue">Tag 1</span>
+            <span class="tag tag-pink">Tag 2</span>
+            <span class="add">+ Add Tag</span>
+          </div>
+        </div>
+        <div class="bottom-links">
+          <button>Settings</button>
+          <button>Sign out</button>
+        </div>
+      </aside>
+
+      <!-- Middle Task List -->
+      <main class="task-list">
+        <div class="calendar-header">
+          <div class="header-top-row">
+            <h2 id="calendarTitle">February 2022</h2>
+            <button id="addEventBtn">+ Add Event</button>
+          </div>
+          <div class="header-bottom-row">
+            <div class="view-switch">
+              <button id="dayView">Day</button>
+              <button id="weekView">Week</button>
+              <button id="monthView" class="active">Month</button>
+            </div>
+            <div class="nav-buttons">
+              <button id="prevBtn">&lt;</button>
+              <button id="nextBtn">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <div id="calendarContainer" class="month-view">
+          <!-- Month/Week/Day view will be injected here -->
+        </div>
+      </main>
+
+      <!-- Task Details Panel -->
+      <aside class="task-details" id="taskDetailsPanel">
+        <div class="task-details-panel-content">
+          <button id="closePanelBtn" class="close-panel-btn">×</button>
+          <h2>Task:</h2>
+          <input id="taskTitle" type="text" placeholder="Task Title" />
+          <textarea id="taskDescription" placeholder="Description"></textarea>
+          <div>
+            <label>
+              List:
+              <select id="taskList">
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="List 1">List 1</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              Due date:
+              <input type="date" id="taskDueDate" />
+            </label>
+            <label>
+              Time:
+              <input type="time" id="taskDueTime" />
+            </label>
+          </div>
+          <div>
+            <label for="taskTag">Tags:</label>
+            <select id="taskTag">
+              <option value="tag-blue">Tag1</option>
+              <option value="tag-pink">Tag2</option>
+              <option value="tag-yellow">Tag3</option>
+            </select>
+          </div>
+          <div>
+            <h3>Subtasks:</h3>
+            <ul id="subtasks"></ul>
+            <button id="addSubtaskBtn" class="add-subtask-btn">
+              + Add New Subtask
+            </button>
+          </div>
+          <div class="actions">
+            <button id="deleteBtn" class="delete-btn">Delete Task</button>
+            <button id="saveBtn" class="save-btn">Save changes</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <script src="calender_script.js"></script>
+    <script src="sidebar_counts.js"></script>
+  </body>
+</html>

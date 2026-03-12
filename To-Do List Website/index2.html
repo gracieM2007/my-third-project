@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <link rel="stylesheet" href="style2.css" />
+
+    <div class="todo-container">
+      <h1>My Advanced To-Do List</h1>
+      <div class="input-section">
+        <div class="input-row">
+          <!-- Main task input field -->
+          <input type="text" id="task-input" placeholder="What's your task?" />
+        </div>
+
+        <div class="input-row">
+          <!-- Custom Priority Dropdown -->
+          <div class="dropdown" id="priority-dropdown">
+            <div class="dropdown-display" data-value="low">Priority: Low</div>
+            <div class="dropdown-menu">
+              <div class="dropdown-option" data-value="low">Priority: Low</div>
+              <div class="dropdown-option" data-value="medium">
+                Priority: Medium
+              </div>
+              <div class="dropdown-option" data-value="high">
+                Priority: High
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Task Type Dropdown -->
+          <div class="dropdown" id="type-dropdown">
+            <div class="dropdown-display" data-value="personal">Personal</div>
+            <div class="dropdown-menu">
+              <div class="dropdown-option" data-value="personal">Personal</div>
+              <div class="dropdown-option" data-value="project-management">
+                Project Management
+              </div>
+              <div class="dropdown-option" data-value="task-management">
+                Task Management
+              </div>
+              <div class="dropdown-option" data-value="time-management">
+                Time Management
+              </div>
+              <div class="dropdown-option" data-value="habit-forming">
+                Habit Forming
+              </div>
+              <div class="dropdown-option" data-value="teamwork">Teamwork</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <!-- Location input -->
+          <input
+            type="text"
+            id="location-input"
+            placeholder="Add a location..."
+          />
+
+          <!-- Date and time input -->
+
+          <div class="datetime-placeholder-wrapper">
+            <input
+              type="datetime-local"
+              id="datetime-input"
+              class="datetime-placeholder-active"
+            />
+            <span id="datetime-placeholder">Set Date & Time</span>
+          </div>
+        </div>
+        <!-- Button to add the task -->
+        <button id="add-task-btn">Add Task</button>
+      </div>
+
+      <!-- The unordered list where tasks will be dynamically added -->
+      <ul id="task-list"></ul>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Get references to all necessary HTML elements
+        const taskInput = document.getElementById("task-input");
+        const locationInput = document.getElementById("location-input");
+        const datetimeInput = document.getElementById("datetime-input");
+        const addTaskBtn = document.getElementById("add-task-btn");
+        const taskList = document.getElementById("task-list");
+
+        // Get references to the custom dropdowns
+        const priorityDropdown = document.getElementById("priority-dropdown");
+        const typeDropdown = document.getElementById("type-dropdown");
+
+        // This function handles the logic for a user selecting an option from a custom dropdown.
+        function handleOptionSelection(event) {
+          const clickedOption = event.target;
+          const value = clickedOption.dataset.value;
+          const parentDropdown = clickedOption.closest(".dropdown");
+          const display = parentDropdown.querySelector(".dropdown-display");
+
+          // Update the display text to match the selected option's text
+          display.textContent = clickedOption.textContent;
+          // Update the data-value on the display div for later use
+          display.dataset.value = value;
+
+          // Close the dropdown menu by removing the 'active' class
+          parentDropdown.classList.remove("active");
+        }
+
+        // This function handles the logic for a user clicking on a dropdown display.
+        function handleDropdownToggle(event) {
+          // Find the closest parent with the 'dropdown' class
+          const dropdownContainer = event.currentTarget.parentElement;
+          // Toggle the 'active' class to show or hide the menu
+          dropdownContainer.classList.toggle("active");
+        }
+
+        // Add click listeners to the dropdown displays to toggle their menus.
+        // We target the display part specifically to avoid conflicts with the option clicks.
+        priorityDropdown
+          .querySelector(".dropdown-display")
+          .addEventListener("click", handleDropdownToggle);
+        typeDropdown
+          .querySelector(".dropdown-display")
+          .addEventListener("click", handleDropdownToggle);
+
+        // Add click listeners to the options in each dropdown menu to handle selection.
+        priorityDropdown
+          .querySelectorAll(".dropdown-option")
+          .forEach((option) => {
+            option.addEventListener("click", handleOptionSelection);
+          });
+        typeDropdown.querySelectorAll(".dropdown-option").forEach((option) => {
+          option.addEventListener("click", handleOptionSelection);
+        });
+
+        /**
+         * Function to create and add a new task item with all details.
+         */
+        function addTask() {
+          const taskText = taskInput.value.trim();
+          const priority =
+            priorityDropdown.querySelector(".dropdown-display").dataset.value;
+          const type =
+            typeDropdown.querySelector(".dropdown-display").dataset.value;
+          const location = locationInput.value.trim();
+          const datetime = datetimeInput.value;
+
+          // Check if the main task input is not empty
+          if (taskText !== "") {
+            // Create a new list item (li) for the task
+            const taskItem = document.createElement("li");
+            taskItem.className = "task-item";
+
+            // Create the main task content container
+            const taskMain = document.createElement("div");
+            taskMain.className = "task-main";
+
+            // Create a span element to hold the task text
+            const taskSpan = document.createElement("span");
+            taskSpan.className = "task-text";
+            taskSpan.textContent = taskText;
+
+            // Create a button to delete the task
+            const deleteBtn = document.createElement("button");
+            deleteBtn.className = "delete-btn";
+            deleteBtn.textContent = "✖";
+
+            // Append task text and delete button to the main content container
+            taskMain.appendChild(taskSpan);
+            taskMain.appendChild(deleteBtn);
+
+            // Create a div for task details
+            const taskDetails = document.createElement("div");
+            taskDetails.className = "task-details";
+
+            // Add priority detail
+            if (priority) {
+              const prioritySpan = document.createElement("span");
+              prioritySpan.className = `detail-item priority-${priority}`;
+              prioritySpan.textContent = `Priority: ${
+                priority.charAt(0).toUpperCase() + priority.slice(1)
+              }`;
+              taskDetails.appendChild(prioritySpan);
+            }
+
+            // Add type detail
+            if (type) {
+              const typeSpan = document.createElement("span");
+              typeSpan.className = "detail-item";
+              const formattedType = type
+                .split("-")
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ");
+              typeSpan.textContent = `Type: ${formattedType}`;
+              taskDetails.appendChild(typeSpan);
+            }
+
+            // Add location detail
+            if (location) {
+              const locationSpan = document.createElement("span");
+              locationSpan.className = "detail-item";
+              locationSpan.textContent = `Location: ${location}`;
+              taskDetails.appendChild(locationSpan);
+            }
+
+            // Add datetime detail
+            if (datetime) {
+              const dateObj = new Date(datetime);
+              const formattedDate = dateObj.toLocaleDateString();
+              const formattedTime = dateObj.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+              const datetimeSpan = document.createElement("span");
+              datetimeSpan.className = "detail-item";
+              datetimeSpan.textContent = `Due: ${formattedDate} ${formattedTime}`;
+              taskDetails.appendChild(datetimeSpan);
+            }
+
+            // Append the main content and details to the list item
+            taskItem.appendChild(taskMain);
+            taskItem.appendChild(taskDetails);
+
+            // Add the new task item to the unordered list
+            taskList.appendChild(taskItem);
+
+            // Clear the input fields for the next task
+            taskInput.value = "";
+            locationInput.value = "";
+            datetimeInput.value = "";
+
+            // Add a click listener to the task item to toggle 'completed' class
+            taskItem.addEventListener("click", () => {
+              taskItem.classList.toggle("completed");
+            });
+
+            // Add a click listener to the delete button to remove the task
+            deleteBtn.addEventListener("click", (event) => {
+              // Stop the click event from bubbling up to the task item
+              event.stopPropagation();
+              taskList.removeChild(taskItem);
+            });
+          }
+        }
+
+        // Event listener for the "Add Task" button click
+        addTaskBtn.addEventListener("click", addTask);
+
+        // Event listener for the "Enter" key press on the main input field
+        taskInput.addEventListener("keypress", (event) => {
+          if (event.key === "Enter") {
+            addTask();
+          }
+        });
+        function updateDatetimePlaceholder() {
+          if (!datetimeInput.value) {
+            datetimeInput.classList.add("datetime-placeholder-active");
+          } else {
+            datetimeInput.classList.remove("datetime-placeholder-active");
+          }
+        }
+
+        datetimeInput.addEventListener("input", updateDatetimePlaceholder);
+
+        // Initial check
+        updateDatetimePlaceholder();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Upcoming - To-Do List App</title>
+    <link rel="stylesheet" href="style3.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h2>Menu</h2>
+        <input type="search" class="search-box" placeholder="Search" />
+        <div class="menu-section">
+          <h3>Tasks</h3>
+          <ul>
+            <li onclick="window.location.href='today.html'">
+              ☀️Today <span class="count" id="todayCount">0</span>
+            </li>
+            <li class="active" onclick="window.location.href='upcoming.html'">
+              📅Upcoming <span class="count" id="upcomingCount">0</span>
+            </li>
+            <li onclick="window.location.href='calender.html'">🗓️Calendar</li>
+            <li onclick="window.location.href='sticky_wall.html'">
+              📝Sticky Wall
+            </li>
+          </ul>
+        </div>
+        <div class="menu-section">
+          <h3>Lists</h3>
+          <ul>
+            <li onclick="window.location.href='personal.html'">
+              <span class="dot pink"></span> Personal
+              <span class="count" id="personalCount">0</span>
+            </li>
+            <li onclick="window.location.href='work.html'">
+              <span class="dot blue"></span> Work
+              <span class="count" id="workCount">0</span>
+            </li>
+            <li onclick="window.location.href='List1.html'">
+              <span class="dot yellow"></span> List 1
+              <span class="count" id="list1Count">0</span>
+            </li>
+            <li class="add">+ Add New List</li>
+          </ul>
+        </div>
+        <div class="menu-section">
+          <h3>Tags</h3>
+          <div class="tags">
+            <span class="tag tag-blue">Tag 1</span>
+            <span class="tag tag-pink">Tag 2</span>
+            <span class="add">+ Add Tag</span>
+          </div>
+        </div>
+        <div class="bottom-links">
+          <button>Settings</button>
+          <button>Sign out</button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="task-list">
+        <div class="task-header">
+          <h1>Upcoming</h1>
+          <span class="count" id="mainUpcomingCount">0</span>
+        </div>
+        <div class="upcoming-sections">
+          <section class="upcoming-group">
+            <h3>
+              <span class="icon">☀️</span> Today
+              <span class="count" id="upcomingTodayCount">0</span>
+            </h3>
+            <button class="add-task-main-btn">+ Add New Task</button>
+            <ul id="upcomingTodayTasks"></ul>
+          </section>
+          <section class="upcoming-group">
+            <h3>
+              <span class="icon">➡️</span> Tomorrow
+              <span class="count" id="upcomingTomorrowCount">0</span>
+            </h3>
+            <button class="add-task-main-btn">+ Add New Task</button>
+            <ul id="upcomingTomorrowTasks"></ul>
+          </section>
+          <section class="upcoming-group">
+            <h3>
+              <span class="icon">📅</span> This Week
+              <span class="count" id="upcomingWeekCount">0</span>
+            </h3>
+            <button class="add-task-main-btn">+ Add New Task</button>
+            <ul id="upcomingWeekTasks"></ul>
+          </section>
+        </div>
+      </main>
+
+      <!-- Task Details Panel for Upcoming -->
+      <aside class="task-detail" id="upcomingTaskDetailsPanel">
+        <button id="closeUpcomingPanelBtn" class="close-panel-btn">
+          <span class="icon">&times;</span>
+        </button>
+        <h2>Task:</h2>
+        <input id="upcomingTaskTitle" type="text" placeholder="Task Title" />
+        <textarea
+          id="upcomingTaskDescription"
+          placeholder="Description"
+        ></textarea>
+        <div>
+          <label
+            >List:
+            <select id="upcomingTaskListType">
+              <option selected>None</option>
+              <option>Personal</option>
+              <option>Work</option>
+              <option>List 1</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label
+            >Due date:
+            <input type="date" id="upcomingTaskDueDate" />
+          </label>
+        </div>
+        <div>
+          <label>Tags:</label>
+          <span class="tag tag-blue">Tag 1</span>
+          <span class="add">+ Add Tag</span>
+        </div>
+        <div>
+          <h3>Subtasks:</h3>
+          <ul id="upcomingSubtasks"></ul>
+          <button id="addUpcomingSubtaskBtn" class="add-subtask-btn">
+            + Add New Subtask
+          </button>
+        </div>
+        <div class="actions">
+          <button id="deleteUpcomingBtn" class="delete-btn">Delete Task</button>
+          <button id="saveUpcomingBtn" class="save-btn">Save changes</button>
+        </div>
+      </aside>
+    </div>
+    <script src="upcoming_script.js"></script>
+  </body>
+</html>

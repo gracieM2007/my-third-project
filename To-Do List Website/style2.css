@@ -1,0 +1,331 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/* --- General Body and Layout Styles --- */
+body {
+  font-family: "Poppins", sans-serif;
+  background-image: url("butterfly.jpg");
+  background-size: cover;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 50px;
+  box-sizing: border-box;
+}
+
+/* --- Main To-Do Container --- */
+.todo-container {
+  margin-left: 500px;
+  margin-top: 100px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(128, 0, 128, 0.15); /* Purple shadow */
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* --- Header Styling --- */
+h1 {
+  color: #8a2be2; /* Blue-violet header color */
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Input and Button Section --- */
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+#task-input {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 2px solid #e6e6fa; /* Lavender border */
+  border-radius: 15px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #fff;
+}
+
+#task-input::placeholder {
+  color: #b0c4de;
+}
+
+#task-input:focus {
+  border-color: #8a2be2; /* Blue-violet on focus */
+  box-shadow: 0 0 5px rgba(128, 0, 128, 0.3);
+}
+
+.input-full-width {
+  flex-grow: 1;
+}
+
+/* --- Custom Dropdown Styles --- */
+.dropdown {
+  position: relative;
+  flex-grow: 1;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-display {
+  padding: 12px 15px;
+  border: 2px solid #e6e6fa;
+  border-radius: 15px;
+  font-size: 14px;
+  color: #4a4a4a;
+  background-color: #fff;
+  position: relative;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-display:after {
+  content: "▼";
+  font-size: 10px;
+  color: #8a2be2;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 2px solid #e6e6fa;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  display: none; /* Hidden by default */
+  margin-top: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown.active .dropdown-menu {
+  display: block;
+}
+
+.dropdown-option {
+  padding: 12px 15px;
+  font-size: 14px;
+  color: #4a4a4a;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-option:hover {
+  background-color: #f2e6ff; /* Soft lavender hover */
+}
+
+.dropdown-option:first-child {
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
+}
+
+.dropdown-option:last-child {
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+}
+
+/* --- Other inputs --- */
+input[type="datetime-local"],
+input[type="text"] {
+  padding: 12px 15px;
+  border: 2px solid #e6e6fa;
+  border-radius: 15px;
+  font-size: 14px;
+  color: #4a4a4a;
+  outline: none;
+  background-color: #fff;
+  flex-grow: 1;
+}
+
+input:focus {
+  border-color: #8a2be2;
+}
+
+#add-task-btn {
+  padding: 12px 20px;
+  background-color: #8a2be2; /* Blue-violet button */
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(128, 0, 128, 0.3);
+  width: 100%;
+}
+
+#add-task-btn:hover {
+  background-color: #6a1b9a; /* Darker purple on hover */
+  transform: scale(1.02);
+}
+
+#add-task-btn:active {
+  transform: scale(1);
+}
+
+/* --- Task List Styles --- */
+#task-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.task-item {
+  background-color: #f2e6ff; /* Soft lavender item background */
+  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+}
+
+.task-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.task-text {
+  font-weight: 600;
+  color: #4a4a4a;
+  font-size: 18px;
+  flex-grow: 1;
+}
+
+.task-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  color: #6a6a6a;
+  font-style: italic;
+}
+
+.detail-item {
+  background-color: #e6e6fa;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+/* --- Completed Task Styles --- */
+.task-item.completed {
+  background-color: #d1f4ff; /* Light blue for completed items */
+  color: #999;
+  text-decoration: none;
+  opacity: 0.8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+}
+
+.task-item.completed .task-details {
+  color: #aaa;
+}
+
+.task-item.completed .detail-item {
+  background-color: #b0e0ff;
+}
+
+/* --- Priority Styles --- */
+.priority-low {
+  background-color: #d6f6e5;
+  color: #388e3c;
+} /* Green */
+.priority-medium {
+  background-color: #fff9e6;
+  color: #ffa000;
+} /* Yellow */
+.priority-high {
+  background-color: #fde8e8;
+  color: #d32f2f;
+} /* Red */
+
+/* --- Delete Button Styles --- */
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #8a2be2;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2) rotate(10deg);
+  color: #6a1b9a;
+}
+.datetime-placeholder-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+#datetime-placeholder {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  pointer-events: none;
+  z-index: 3;
+  font-size: 0.95em;
+  background: transparent;
+  transition: opacity 0.2s;
+  padding: 0 4px;
+  white-space: nowrap;
+  opacity: 1;
+}
+/*#datetime-input:empty,
+#datetime-input:not(:focus):not([value]) {
+  color: white;
+}*/
+
+#datetime-input:focus,
+#datetime-input[value]:not([value=""]) {
+  color: #4a4a4a; /* Your normal input color */
+}
+
+#datetime-input:not(.datetime-placeholder-active) {
+  color: #4a4a4a;
+}
+
+#datetime-input:not(.datetime-placeholder-active) + #datetime-placeholder {
+  opacity: 0;
+}
+/*#datetime-input.datetime-placeholder-active {
+  color: black;
+}*/
+#datetime-input:not(.datetime-placeholder-active) {
+  color: #4a4a4a;
+}

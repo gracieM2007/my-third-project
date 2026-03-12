@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced To-Do List</title>
+    <link rel="stylesheet" href="style3.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar Menu -->
+      <aside class="sidebar">
+        <h2>Menu</h2>
+        <input type="search" class="search-box" placeholder="Search" />
+        <div class="menu-section">
+          <h3>Tasks</h3>
+          <ul>
+            <li onclick="window.location.href='today.html'">
+              ☀️Today <span class="count" id="todayCount">0</span>
+            </li>
+            <li class="active" onclick="window.location.href='upcoming.html'">
+              📅Upcoming <span class="count" id="upcomingCount">0</span>
+            </li>
+
+            <li onclick="window.location.href='calender.html'">🗓️Calendar</li>
+            <li onclick="window.location.href='sticky_wall.html'">
+              📝Sticky Wall
+            </li>
+          </ul>
+        </div>
+        <div class="menu-section">
+          <h3>Lists</h3>
+          <ul>
+            <li onclick="window.location.href='personal.html'">
+              <span class="dot pink"></span> Personal
+              <span class="count">0</span>
+            </li>
+            <li onclick="window.location.href='work.html'">
+              <span class="dot blue"></span> Work <span class="count">0</span>
+            </li>
+            <li onclick="window.location.href='List1.html'">
+              <span class="dot yellow"></span> List 1
+              <span class="count">0</span>
+            </li>
+            <li class="add">+ Add New List</li>
+          </ul>
+        </div>
+        <div class="menu-section">
+          <h3>Note Colors</h3>
+          <div class="color-palette">
+            <div class="color-swatch yellow selected" data-color="yellow"></div>
+            <div class="color-swatch blue" data-color="blue"></div>
+            <div class="color-swatch pink" data-color="pink"></div>
+            <div class="color-swatch orange" data-color="orange"></div>
+          </div>
+          <h3>Tags</h3>
+          <div class="tags">
+            <span class="tag tag-blue">Tag 1</span>
+            <span class="tag tag-pink">Tag 2</span>
+            <span class="add">+ Add Tag</span>
+          </div>
+        </div>
+        <div class="bottom-links">
+          <button>Settings</button>
+          <button>Sign out</button>
+        </div>
+      </aside>
+
+      <!---sticky wall notes--->
+      <main class="task-list">
+        <div class="task-header">
+          <h1>Sticky Wall</h1>
+        </div>
+        <div id="stickyWall" class="sticky-wall">
+          <!-- Default sticky notes -->
+          <div class="note yellow">
+            <h3>Social Media</h3>
+            <ul>
+              <li>Plan social content</li>
+              <li>Build content calendar</li>
+              <li>Plan promotion and distribution</li>
+            </ul>
+          </div>
+          <div class="note blue">
+            <h3>Content Strategy</h3>
+            <p>
+              Would need time to get insights (goals, personas, budget, audits),
+              but after, it would be good to focus on assembling my team.
+            </p>
+          </div>
+          <div class="note pink">
+            <h3>Email A/B Tests</h3>
+            <ul>
+              <li>Subject lines</li>
+              <li>Sender</li>
+              <li>CTA</li>
+              <li>Sending times</li>
+            </ul>
+          </div>
+          <div class="note orange">
+            <h3>Banner Ads</h3>
+            <ul>
+              <li>Sizing matters</li>
+              <li>Choose distinctive imagery</li>
+              <li>The landing page must match the display ad</li>
+            </ul>
+          </div>
+
+          <!-- Plus Button -->
+          <div id="addNote" class="note add">+</div>
+        </div>
+      </main>
+    </div>
+    <script src="sticky_wall_script.js"></script>
+  </body>
+</html>

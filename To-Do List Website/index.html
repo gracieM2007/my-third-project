@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Advanced To-Do List</title>
+  </head>
+  <body>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <div class="todo-container">
+      <h1>My Advanced To-Do List</h1>
+      <div class="input-section">
+        <div class="input-row">
+          <!-- Main task input field -->
+          <input type="text" id="task-input" placeholder="What's your task?" />
+        </div>
+
+        <div class="input-row">
+          <!-- Custom Priority Dropdown -->
+          <div class="dropdown" id="priority-dropdown">
+            <div class="dropdown-display" data-value="low">Set Priority</div>
+            <div class="dropdown-menu">
+              <div class="dropdown-option" data-value="low">Priority: Low</div>
+              <div class="dropdown-option" data-value="medium">
+                Priority: Medium
+              </div>
+              <div class="dropdown-option" data-value="high">
+                Priority: High
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Task Type Dropdown -->
+          <div class="dropdown" id="type-dropdown">
+            <div class="dropdown-display" data-value="personal">Task Type</div>
+            <div class="dropdown-menu">
+              <div class="dropdown-option" data-value="personal">Personal</div>
+              <div class="dropdown-option" data-value="project-management">
+                Project Management
+              </div>
+              <div class="dropdown-option" data-value="task-management">
+                Task Management
+              </div>
+              <div class="dropdown-option" data-value="time-management">
+                Time Management
+              </div>
+              <div class="dropdown-option" data-value="habit-forming">
+                Habit Forming
+              </div>
+              <div class="dropdown-option" data-value="teamwork">Teamwork</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <!-- Location input -->
+          <input
+            type="text"
+            id="location-input"
+            placeholder="Add a location..."
+          />
+
+          <!-- Date and time input -->
+          <div class="datetime-placeholder-wrapper">
+            <input
+              type="datetime-local"
+              id="datetime-input"
+              class="datetime-placeholder-active"
+            />
+            <span id="datetime-placeholder">Set Date & Time</span>
+          </div>
+        </div>
+
+        <!-- Button to add the task -->
+        <button id="add-task-btn">Add Task</button>
+      </div>
+
+      <!-- The unordered list where tasks will be dynamically added -->
+      <ul id="task-list"></ul>
+    </div>
+  </body>
+</html>
